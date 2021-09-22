@@ -20,7 +20,7 @@ A project to learn how DOM manipulated by use  JavaScript dynamiclly added secti
 
 
 
-I am Hussein Front End Developer will show you my steps on this (My) Project (Steps):
+show you my steps on this (My) Project (Steps):
 
 * Notes: you will find the same following steps mentioned in the code files (index.html - app.js) as a comment lines too.
 kindly be informed that i ((downloaded the starter code)) and use it from (https://github.com/udacity/fend/tree/refresh-2019) as you mentioned.
@@ -29,16 +29,13 @@ kindly be informed that i ((downloaded the starter code)) and use it from (https
 
 1- on file (index.html)
 
-Step (1) I am Front End Developer Hussein adding missing section 4 on starter file on the next line copying section 3 and rename it to section 4, I do that to meet the PROJECT SPECIFICATION requirements mentioned instructions on Interface and Architecture - HTML Structure - that says "There are at least 4 sections that have been added to the page." and the starter code contains three sections only.
+adding missing section 4 on starter file on the next line copying section 3 and rename it to section 4, I do that to meet the PROJECT SPECIFICATION requirements mentioned instructions on Interface and Architecture - HTML Structure - that says "There are at least 4 sections that have been added to the page." and the starter code contains three sections only.
 
- Step (2) I am Front End Developer Hussein adding javascript file link on the next line, and i do that to meet the PROJECT SPECIFICATION requirements mentioned instructions (Landing Page Behavior) that says (Navigation is built dynamically as an unordered list. Start with empty ul and dynamically build navigation using Append, appendChild, and innerHTML.) so we must do it with javascript to be dynamically.
 
- Step (3) on the javascript file (app.js) I have read and follow the instructions green lines that is already made (green comments) on the started file:
+adding javascript file link on the next line, and i do that to meet the PROJECT SPECIFICATION requirements mentioned instructions (Landing Page Behavior) that says (Navigation is built dynamically as an unordered list. Start with empty ul and dynamically build navigation using Append, appendChild, and innerHTML.) so we must do it with javascript to be dynamically.
+
+javascript file (app.js) I have read and follow the instructions green lines that is already made (green comments) on the started file:
 
  - Define Global Variables : (navigationbarList - pageSections), Tip 1) Selection of all the sections via document.querySelectorAll(‘section’);
-
-
-
-
 
 
