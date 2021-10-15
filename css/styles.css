@@ -88,19 +88,6 @@ section {
     transition: ease 0.3s all;
 }
 
-.navbar__list__item {
-    margin: 2rem;
-}
-
-#navbar__list {
-    background: rgb(170, 134, 134);
-}
-
-.nav__hyperlink {
-	color: rgb(247, 234, 234);
-}
-
-
 /* Header Styles */
 .page__header {
     background: #fff;
@@ -234,3 +221,9 @@ section.your-active-class .landing__container::after {
 		           rotate(-360deg);
 	}
 }
+
+/* smooth scroll 
+*/
+html {
+    scroll-behavior: smooth;
+  }
