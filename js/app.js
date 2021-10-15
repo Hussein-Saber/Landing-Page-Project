@@ -18,8 +18,13 @@
  * 
 */
 
-let navbarList = document.querySelector("#navbar__list");
-const sections = document.querySelectorAll("section");
+//selecting navigation bar by element ID
+const navBarListVar = document.getElementById('navbar__list');
+
+//selecting all sections on html and new entry sections by TagName
+const sectionsVar = document.querySelectorAll('section');
+
+
 
 /**
  * End Global Variables
@@ -27,31 +32,7 @@ const sections = document.querySelectorAll("section");
  * 
 */
 
-//Function to check if an element is in viewport or not
-function isInViewport(elem) {
-	var distance = elem.getBoundingClientRect();
 
-	return (
-		distance.top >= -300 &&
-		distance.left >= 0 &&
-		distance.bottom <= (1.3 * window.innerHeight || document.documentElement.clientHeight) &&
-		distance.right <= (window.innerWidth || document.documentElement.clientWidth)
-	);
-};
-
-//Function to remove active classes
-function deactivateSections() {
-    sections.forEach((element)=>{
-        element.classList.remove("your-active-class", "active");
-    });
-}
-
-function deactivateNavLinks() {
-    let navbarAnchors = document.querySelectorAll(".nav__hyperlink");
-    navbarAnchors.forEach((element)=>{
-        element.classList.remove("active-nav");
-    });
-}
 
 /**
  * End Helper Functions
@@ -60,38 +41,94 @@ function deactivateNavLinks() {
 */
 
 // build the nav
-window.addEventListener('load', buildNavbar())
+function addSections2NavList() {
 
-// Add class 'active' to section when near top of viewport
-function activateCurrentSection(currentSection) {
-    currentSection.classList.add("your-active-class", "active");
+    // create empty fragment container
+    const fragment = document.createDocumentFragment();
 
-    deactivateNavLinks();
-    activateNavLinks(currentSection.getAttribute('id'));
+    // for loop parameter section tagName and all sections queryselectorall save on constant sectionsVar 
+    for (section of sectionsVar)  {
+
+        // define on scope section variable
+        const sectionId = section.getAttribute("id");
+
+        // create li element (list items varaible) to reuse in for loop
+        const menuListLi = document.createElement('li');
+        //create anchor element to reuse in forr loop
+        const menuListLiAddAnchor = document.createElement('a');
+        // add selected id to anchor using .href
+        menuListLiAddAnchor.href = `#${sectionId}`;
+        // adding data-nav to use it as section name by innerHTML method
+        menuListLiAddAnchor.innerHTML = section.getAttribute('data-nav'); /*section name link*/
+        /* add menu__link class , className already-made defined on style.css from starter code*/
+        menuListLiAddAnchor.classList.add('menu__link');
+        // using appendChild method to insert anchor element inside li element
+        menuListLi.appendChild(menuListLiAddAnchor);
+        // using appendChild method to insert li element to empty fragment
+        fragment.appendChild(menuListLi);
+    };
+
+    // insert li fragment to menu list on navigation bar and will add th function its self to the end of this page js to call it and execute it
+    navBarListVar.appendChild(fragment);
+};
+
+
+// function Add class 'active' to sectoin
+ 
+function addactiveClassSection(section) {
+    //select section id
+    const activeSectionId = section.getAttribute('id');
+    //add (your-active-class) class to section
+    document.querySelector(`#${activeSectionId}`).classList.add('your-active-class');
 }
 
-function activateNavLinks(currentSectionId) {
-    let navbarAnchors = document.querySelectorAll(".nav__hyperlink");
-    //console.log(navbarAnchors);
-        navbarAnchors.forEach((element)=>{
-            if(element.getAttribute('href') == `#${currentSectionId}`) {
-                element.classList.add("active-nav");
-            }
-        });
+// function remove class 'active' to sectoin
+
+function removeactiveClassSection(section) {
+    //select section id
+    const activeSectionId = section.getAttribute('id');
+    //remove (your-active-class) class to section
+    document.querySelector(`#${activeSectionId}`).classList.remove('your-active-class');
 }
+
+// function detect conditions to call add active class function or to call remove active function
+
+function activeClassCondition() {
+    // using foreach loop sectionVar global variable = queryselectorall of sections on Dom
+    sectionsVar.forEach((section) => {
+        
+        // sefine getBouncingClientRect method on variable to viewport for section scope
+        let sectionOnView = section.getBoundingClientRect();
+        // adding function condtions to execute getBouncingClientRect for section scope equal or less than 120 from top or 120 from bottom execute add active class to section element else remove it on the following else statement
+        if (sectionOnView.top <= 120 && sectionOnView.bottom >= 120) {
+            addactiveClassSection(section);
+        } else {
+            removeactiveClassSection(section);
+        }
+    }
+
+    );
+
+}
+
+// add event listener document to excute activeClassCondition function to add or remove active class on sections element
+document.addEventListener('scroll', activeClassCondition);
+
+
+
+//check section is being viewed in view or not
+
+
+
+// adding Section Active State funtion to set/add active class and remove it
+
+
+
 
 // Scroll to anchor ID using scrollTO event
-function scrollToSectionOnClick() {
-    let navbarAnchors = document.querySelectorAll(".nav__hyperlink");
-    navbarAnchors.forEach((element) => {
-        element.addEventListener("click", function(event) {
-            event.preventDefault();
-            document.querySelector(element.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-}
+
+// add smoth style on css style sheet at the end of the css file
+
 
 /**
  * End Main Functions
@@ -99,35 +136,14 @@ function scrollToSectionOnClick() {
  * 
 */
 
-// Build menu
-function buildNavbar() {
-	sections.forEach((element)=>{
-	    let listItem = document.createElement("li");
-	    listItem.classList.add("navbar__list__item");
-    	let sectionName = element.getAttribute("data-nav");
-    	let currentSectionId = element.getAttribute("id");
-        listItem.innerHTML = `<a href="#${currentSectionId}" class="nav__hyperlink">${sectionName}</a>`;
-        navbarList.appendChild(listItem);
-    });
-}
+// Build menu 
 
 // Scroll to section on link click
-scrollToSectionOnClick();
 
 // Set sections as active
-window.addEventListener('scroll', function (event) {
-	event.preventDefault();
-	
-    sections.forEach((element) => {
-        // console.log(element);
-        if (isInViewport(element)) {
-            deactivateSections();
-            activateCurrentSection(element);
-            // console.log('In viewport!');
-        } else if(window.scrollY==0) {
-            deactivateSections();
-            deactivateNavLinks();
-            // console.log('No Change');
-        }
-    }, false);
-});
+
+// call add section to navigation bar function here to execute fire
+addSections2NavList();
+
+// adding event listener on DOM when scrollong excute section add or remove active class funtion to fire here 
+document.addEventListener('scroll', sectionactiveState);
