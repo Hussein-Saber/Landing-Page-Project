@@ -147,3 +147,4 @@ addSections2NavList();
 
 // adding event listener on DOM when scrollong excute section add or remove active class funtion to fire here 
 document.addEventListener('scroll', sectionactiveState);
+
