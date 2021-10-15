@@ -27,5 +27,9 @@ I have tested the movement of the activate class from one section to another sec
 
 Please don't forget that I am not an expert developer here, I join this course cause I want to learn as a beginner not an expert, This scholarship course is very important to me and for my career pass.
 
-Best regards Hussein.
+
+My GitHub landing page project link is :
+https://github.com/Hussein-Saber/Landing-Page-Project.git
+
+Best regards Hussein
 
