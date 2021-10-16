@@ -144,7 +144,3 @@ document.addEventListener('scroll', activeClassCondition);
 
 // call add section to navigation bar function here to execute fire
 addSections2NavList();
-
-// adding event listener on DOM when scrollong excute section add or remove active class funtion to fire here 
-document.addEventListener('scroll', sectionactiveState);
-
