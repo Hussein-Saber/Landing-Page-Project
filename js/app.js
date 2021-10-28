@@ -47,7 +47,7 @@ function addSections2NavList() {
     const fragment = document.createDocumentFragment();
 
     // for loop parameter section tagName and all sections queryselectorall save on constant sectionsVar 
-    for (section of sectionsVar)  {
+    for (const section of sectionsVar)  {
 
         // define on scope section variable
         const sectionId = section.getAttribute("id");
@@ -59,9 +59,15 @@ function addSections2NavList() {
         // add selected id to anchor using .href
         menuListLiAddAnchor.href = `#${sectionId}`;
         // adding data-nav to use it as section name by innerHTML method
-        menuListLiAddAnchor.innerHTML = section.getAttribute('data-nav'); /*section name link*/
+        menuListLiAddAnchor.textContent = section.getAttribute('data-nav'); /*section name link*/
         /* add menu__link class , className already-made defined on style.css from starter code*/
         menuListLiAddAnchor.classList.add('menu__link');
+        //add scroll
+        menuListLiAddAnchor.addEventListener("click", e => {
+            e.preventDefault();
+            section.scrollIntoView({behavior: "smooth"})
+        });
+
         // using appendChild method to insert anchor element inside li element
         menuListLi.appendChild(menuListLiAddAnchor);
         // using appendChild method to insert li element to empty fragment
@@ -71,6 +77,31 @@ function addSections2NavList() {
     // insert li fragment to menu list on navigation bar and will add th function its self to the end of this page js to call it and execute it
     navBarListVar.appendChild(fragment);
 };
+
+// add this function to the `DOMContentLoaded` event for the document object like this:
+
+document.addEventListener("DOMContentLoad", addSections2NavList);
+// second add toggle active class whenever scroll event occured
+window.addEventListener("scroll", toggleActiveClass);
+function toggleActiveClass() {
+    const sectionTitle = section.getAttribute("data-nav");
+    const sectionTop = section.getBoundingClientRect().top;
+    if (sectionTop >= 0 && sectionTop <= 300) {
+        section.classList.add("your-active-class");
+        //toggle active class to the links
+        links.forEach(link => {
+            if (link.textContent === sectionTitle){
+                link.classList.add("your-active-class");
+            }else{
+                link.classList.remove("your-active-class");
+            }
+        })
+
+    } else {
+        section.classList.remove("your-active-class");
+        
+    } 
+}
 
 
 // function Add class 'active' to sectoin
