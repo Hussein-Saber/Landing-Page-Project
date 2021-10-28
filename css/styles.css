@@ -223,7 +223,8 @@ section.your-active-class .landing__container::after {
 }
 
 /* smooth scroll 
-*/
+
 html {
     scroll-behavior: smooth;
   }
+  */
