@@ -175,3 +175,4 @@ document.addEventListener('scroll', activeClassCondition);
 
 // call add section to navigation bar function here to execute fire
 addSections2NavList();
+
